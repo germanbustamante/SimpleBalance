@@ -76,7 +76,45 @@ This roadmap breaks down the SaldoSimple development into logical phases, ensuri
 
 ---
 
-## Phase 2: Basic UI Foundation (Week 2-3)
+## Phase 2: Modularization & Dependency Injection (Week 2)
+
+### Goals
+- Modularize the codebase into `data` and `domain` layers.
+- Integrate Koin for dependency injection.
+- Replace the manual `AppContainer` with Koin modules.
+
+### Tasks
+1.  **Create Gradle Modules**
+    - Use the `data`, `model` and `domain` modules already created for the developer if it´s not created, don´t continue
+    - Move the classes from domain and data model in `app` to the new modules
+    - Build successfull
+
+2.  **Migrate Code**
+    - Move all code from `app/src/main/java/com/germandebustamante/simplebalance/data` to the `data` module.
+    - Move all code from `app/src/main/java/com/germandebustamante/simplebalance/domain` to the `domain` module.
+    - Adjust `build.gradle.kts` files for the new modules and `app` module to include the new modules as dependencies.
+3.  **Integrate Koin**
+    - Add Koin dependencies to the `build.gradle.kts` files.
+    - Create Koin modules for the `data` and `domain` layers.
+4.  **Replace AppContainer**
+    - Remove `app/src/main/java/com/germandebustamante/simplebalance/di/AppContainer.kt`.
+    - Create a new `di` package in the `app` module with Koin setup.
+    - Update the `Application` class to initialize Koin.
+
+### Deliverables
+- ✅ `data` and `domain` modules created.
+- ✅ Code successfully migrated to the new modules.
+- ✅ Koin integrated for dependency injection.
+- ✅ `AppContainer` replaced with Koin modules.
+
+### Success Criteria
+- The project compiles and runs successfully after modularization.
+- Dependencies are provided by Koin.
+- Unit tests pass with the new DI setup.
+
+---
+
+## Phase 3: Basic UI Foundation (Week 2-3)
 
 ### Goals
 - Set up Compose navigation
@@ -121,7 +159,7 @@ This roadmap breaks down the SaldoSimple development into logical phases, ensuri
 
 ---
 
-## Phase 3: Add/Edit Expense Flow (Week 3-4)
+## Phase 4: Add/Edit Expense Flow (Week 3-4)
 
 ### Goals
 - Implement add expense functionality
@@ -173,7 +211,7 @@ This roadmap breaks down the SaldoSimple development into logical phases, ensuri
 
 ---
 
-## Phase 4: Delete & List Interactions (Week 4-5)
+## Phase 5: Delete & List Interactions (Week 4-5)
 
 ### Goals
 - Implement swipe-to-delete functionality
@@ -219,7 +257,7 @@ This roadmap breaks down the SaldoSimple development into logical phases, ensuri
 
 ---
 
-## Phase 5: Localization & Polish (Week 5-6)
+## Phase 6: Localization & Polish (Week 5-6)
 
 ### Goals
 - Implement English and Spanish localization
@@ -266,7 +304,7 @@ This roadmap breaks down the SaldoSimple development into logical phases, ensuri
 
 ---
 
-## Phase 6: Testing & Quality Assurance (Week 6-7)
+## Phase 7: Testing & Quality Assurance (Week 6-7)
 
 ### Goals
 - Comprehensive test coverage
@@ -321,7 +359,7 @@ This roadmap breaks down the SaldoSimple development into logical phases, ensuri
 
 ---
 
-## Phase 7: Release Preparation (Week 7-8)
+## Phase 8: Release Preparation (Week 7-8)
 
 ### Goals
 - Prepare for initial release
@@ -370,19 +408,19 @@ This roadmap breaks down the SaldoSimple development into logical phases, ensuri
 
 ## Post-MVP: Future Phases
 
-### Phase 8: Settings & Export (Future)
+### Phase 9: Settings & Export (Future)
 - Settings screen
 - Export/Import functionality
 - Language selection override
 - App preferences
 
-### Phase 9: Enhanced Categories (Future)
+### Phase 10: Enhanced Categories (Future)
 - Custom category creation
 - Category management
 - Category icons customization
 - Category analytics
 
-### Phase 10: Authentication & Sync (Future)
+### Phase 11: Authentication & Sync (Future)
 - Optional user accounts
 - Cloud synchronization
 - Multi-device support
@@ -404,7 +442,7 @@ This roadmap breaks down the SaldoSimple development into logical phases, ensuri
 
 ### Schedule Risks
 1. **Scope Creep**
-   - Mitigation: Strict MVP definition, feature freeze after Phase 5
+   - Mitigation: Strict MVP definition, feature freeze after Phase 6
    
 2. **Quality Issues**
    - Mitigation: Continuous testing, early quality gates

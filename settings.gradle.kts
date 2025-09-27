@@ -21,3 +21,7 @@ dependencyResolutionManagement {
 
 rootProject.name = "SimpleBalance"
 include(":app")
+include(":data:repository")
+include(":data:local")
+include(":domain")
+include(":model")
