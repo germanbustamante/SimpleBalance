@@ -1,3 +1,5 @@
+import io.gitlab.arturbosch.detekt.Detekt
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -30,6 +32,7 @@ android {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
+
     kotlinOptions {
         jvmTarget = "11"
     }
@@ -39,6 +42,12 @@ android {
 }
 
 dependencies {
+    implementation(project(":model"))
+    implementation(project(":domain"))
+    implementation(project(":data:repository"))
+    implementation(project(":data:local"))
+    implementation(libs.kotlinx.datetime)
+
     // Core Android dependencies
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
@@ -51,17 +60,13 @@ dependencies {
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.compose.material3)
     
-    // Phase 1: Architecture components
+    // Architecture components
     implementation(libs.androidx.lifecycle.viewmodel.compose)
     implementation(libs.androidx.navigation.compose)
-    
-    // Phase 1: Database (Room with KSP)
-    implementation(libs.androidx.room.runtime)
-    implementation(libs.androidx.room.ktx)
-    ksp(libs.androidx.room.compiler)  // Using KSP instead of kapt for better performance
-    
-    // Phase 1: Date/time handling
-    implementation(libs.kotlinx.datetime)
+
+    // Koin for Dependency Injection
+    implementation(libs.koin.android)
+    implementation(libs.koin.androidx.compose)
     
     // Testing dependencies
     testImplementation(libs.junit)
@@ -69,28 +74,32 @@ dependencies {
     testImplementation(libs.turbine)
     testImplementation(libs.kotlinx.coroutines.test)
     testImplementation(libs.androidx.room.testing)
+    testImplementation(libs.kotlinx.datetime)
     
     // Android testing
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)
+    androidTestImplementation(libs.kotlinx.datetime)
     
     // Debug dependencies
     debugImplementation(libs.androidx.compose.ui.tooling)
     debugImplementation(libs.androidx.compose.ui.test.manifest)
+
+    implementation(libs.androidx.room.runtime)
+    implementation(libs.androidx.room.ktx)
+
+    detektPlugins(libs.detekt.formatting)
 }
 
 // ===============================
 // Code Quality Configuration
 // ===============================
 
-// Detekt configuration - temporarily disabled for Phase 1 completion
-// Will be re-enabled and properly configured in Phase 2
-/*
 detekt {
-    config.setFrom("$projectDir/../config/detekt/detekt.yml")
+    source.setFrom(files("src/main/java", "src/main/kotlin", "src/debug/java", "src/release/java"))
+    config.setFrom(files("$rootDir/.config/detekt.yml"))
     buildUponDefaultConfig = true
-    allRules = false
+    ignoreFailures = false
 }
-*/

@@ -79,38 +79,52 @@ This roadmap breaks down the SaldoSimple development into logical phases, ensuri
 ## Phase 2: Modularization & Dependency Injection (Week 2)
 
 ### Goals
-- Modularize the codebase into `data` and `domain` layers.
-- Integrate Koin for dependency injection.
-- Replace the manual `AppContainer` with Koin modules.
+- Modularize the codebase into `data` and `domain` layers for better separation of concerns.
+- Integrate Koin as the dependency injection framework.
+- Replace the manual `AppContainer` with a more robust and scalable Koin setup.
 
 ### Tasks
-1.  **Create Gradle Modules**
-    - Use the `data`, `model` and `domain` modules already created for the developer if it´s not created, don´t continue
-    - Move the classes from domain and data model in `app` to the new modules
-    - Build successfull
+1.  **Module Creation & Code Migration**
+    - Create `data` and `domain` Gradle modules.
+    - Move data-layer classes (repositories, DAOs, database, entities) from the `app` module to the `data` module.
+    - Move domain-layer classes (use cases, repository interfaces, domain models) from the `app` module to the `domain` module.
+    - Update `build.gradle.kts` files to declare module dependencies (e.g., `app` depends on `data` and `domain`).
 
-2.  **Migrate Code**
-    - Move all code from `app/src/main/java/com/germandebustamante/simplebalance/data` to the `data` module.
-    - Move all code from `app/src/main/java/com/germandebustamante/simplebalance/domain` to the `domain` module.
-    - Adjust `build.gradle.kts` files for the new modules and `app` module to include the new modules as dependencies.
-3.  **Integrate Koin**
-    - Add Koin dependencies to the `build.gradle.kts` files.
-    - Create Koin modules for the `data` and `domain` layers.
-4.  **Replace AppContainer**
-    - Remove `app/src/main/java/com/germandebustamante/simplebalance/di/AppContainer.kt`.
-    - Create a new `di` package in the `app` module with Koin setup.
-    - Update the `Application` class to initialize Koin.
+2.  **Koin Integration**
+    - Add Koin dependencies (`koin-android`, `koin-androidx-compose`) to the project.
+    - Create a `di` package within the `app` module.
+    - Define Koin modules (`appModule`, `dataModule`, `domainModule`) to provide dependencies for each layer.
+    - Initialize Koin in a custom `Application` class.
+
+3.  **Replace Manual DI**
+    - Safely remove the `AppContainer.kt` file.
+    - Refactor all call sites that used `AppContainer` to resolve dependencies via Koin injection.
+
+4.  **Detekt Activation and Fixing**
+    - Enable Detekt in `app/build.gradle.kts` and other relevant modules.
+    - Run `./gradlew detekt` to identify code quality issues.
+    - Fix all reported Detekt violations to ensure adherence to code quality standards.
+
+5.  **Introduce LocalExpenseDataSource Abstraction**
+    - Create `LocalExpenseDataSource` interface in the `domain` module.
+    - Create `LocalExpenseDataSourceImpl` in the `data:local` module, implementing `LocalExpenseDataSource` and injecting `ExpenseDao`.
+    - Update `ExpenseRepositoryImpl` to depend on `LocalExpenseDataSource` instead of `ExpenseDao`.
+    - Update Koin `dataModule` to provide `LocalExpenseDataSourceImpl` as `LocalExpenseDataSource`.
 
 ### Deliverables
-- ✅ `data` and `domain` modules created.
-- ✅ Code successfully migrated to the new modules.
-- ✅ Koin integrated for dependency injection.
-- ✅ `AppContainer` replaced with Koin modules.
+- ✅ Codebase successfully modularized into `app`, `data`, and `domain` layers.
+- ✅ Koin is integrated and provides all dependencies for the application.
+- ✅ The manual `AppContainer` is completely removed.
+- ✅ The project compiles and all existing tests pass.
+- ✅ Detekt is enabled on all modules and all reported issues are fixed or suppressed.
+- ✅ LocalExpenseDataSource abstraction is implemented and integrated.
 
 ### Success Criteria
-- The project compiles and runs successfully after modularization.
-- Dependencies are provided by Koin.
-- Unit tests pass with the new DI setup.
+- Improved build times due to modularization.
+- Dependencies are managed by Koin and can be easily swapped for testing.
+- The overall architecture is more scalable and maintainable.
+- All modules are compliant with Detekt code quality standards.
+- Data access layer is further decoupled through LocalExpenseDataSource.
 
 ---
 

@@ -19,3 +19,6 @@ local.properties
 /.idea/misc.xml
 /.idea/runConfigurations.xml
 /.idea/vcs.xml
+/.idea/deploymentTargetSelector.xml
+/.idea/appInsightsSettings.xml
+/.idea/kotlinc.xml
