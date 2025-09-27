@@ -1,7 +1,9 @@
 package com.germandebustamante.simplebalance.di
 
+import com.germandebustamante.simplebalance.presentation.viewmodel.HomeViewModel
+import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 val appModule = module {
-    // Define app-specific dependencies here
+    viewModel { HomeViewModel(get(), get()) }
 }

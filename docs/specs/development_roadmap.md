@@ -159,6 +159,14 @@ This roadmap breaks down the SaldoSimple development into logical phases, ensuri
    - State management with Compose State
    - Basic error handling
 
+5. **String Resource Externalization**
+   - Replace all hardcoded strings in UI with references to `strings.xml`.
+
+6. **Language Switching (English/Spanish)**
+   - Implement language switching mechanism in the UI (e.g., a setting or a button).
+   - Create `app/src/main/res/values-es/strings.xml` with Spanish translations for all existing strings.
+   - Ensure the application correctly displays strings based on the selected language.
+
 ### Deliverables
 - ✅ Home screen displaying monthly expenses
 - ✅ Working month navigation

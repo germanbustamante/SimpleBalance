@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">SimpleBalance</string>
+    <string name="previous_month_content_description">Mes Anterior</string>
+    <string name="next_month_content_description">Mes Siguiente</string>
+    <string name="total_expenses_label">Gastos Totales</string>
+    <string name="currency_symbol">€</string>
+    <string name="no_expenses_message">No hay gastos para este mes. ¡Añade uno!</string>
+    <string name="loading_indicator">Cargando...</string>
+    <string name="error_message_prefix">Error: </string>
+    <string name="select_language_content_description">Seleccionar Idioma</string>
+</resources>
