@@ -8,4 +8,24 @@
     <string name="loading_indicator">Loading...</string>
     <string name="error_message_prefix">Error: </string>
     <string name="select_language_content_description">Select Language</string>
+    <string name="add_expense_content_description">Add Expense</string>
+    <string name="add_expense_title">Add Expense</string>
+    <string name="edit_expense_title">Edit Expense</string>
+    <string name="back_content_description">Back</string>
+    <string name="amount_label">Amount</string>
+    <string name="date_label">Date</string>
+    <string name="select_date_content_description">Select Date</string>
+    <string name="ok_button_text">Ok</string>
+    <string name="cancel_button_text">Cancel</string>
+    <string name="category_label">Category</string>
+    <string name="note_label">Note</string>
+    <string name="save_expense_button_text">Save Expense</string>
+    <string name="validation_error_cannot_update_new_expense">Cannot update a new expense. ID must be greater than 0.</string>
+    <string name="validation_error_amount_positive">Expense amount must be positive, got: %1$s</string>
+    <string name="validation_error_amount_decimal_places">Expense amount cannot have more than %1$d decimal places, got: %2$s</string>
+    <string name="validation_error_amount_exceeds_maximum">Expense amount exceeds maximum allowed: %1$s (max: %2$s)</string>
+    <string name="validation_error_date_future">Expense date cannot be more than one month in the future: %1$s</string>
+    <string name="validation_error_note_length">Note cannot exceed %1$d characters, got: %2$d</string>
+    <string name="validation_error_note_special_characters">Note cannot contain special characters: &lt; &gt; { } [ ]</string>
+    <string name="expense_not_found_error">Expense not found</string>
 </resources>

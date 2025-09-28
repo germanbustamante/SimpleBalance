@@ -1,5 +1,6 @@
 package com.germandebustamante.simplebalance.presentation.ui.home
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -11,16 +12,22 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.germandebustamante.model.Expense
 import com.germandebustamante.simplebalance.R
+import com.germandebustamante.simplebalance.presentation.navigation.AppScreens
 
 @Composable
 fun ExpenseListItem(
     expense: Expense,
+    navController: NavController,
     modifier: Modifier = Modifier
 ) {
     Card(
-        modifier = modifier.fillMaxWidth().padding(vertical = 4.dp)
+        modifier = modifier
+            .fillMaxWidth()
+            .padding(vertical = 4.dp)
+            .clickable { navController.navigate(AppScreens.AddEditExpense.createRoute(expense.id)) }
     ) {
         Row(
             modifier = Modifier.padding(16.dp)

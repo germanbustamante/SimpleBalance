@@ -75,6 +75,7 @@ data class Expense(
 
         /**
          * Create new expense with current timestamps.
+         * @param id Expense id (0 for new expenses)
          * @param amount Expense amount
          * @param date Expense date
          * @param category Expense category
@@ -82,6 +83,7 @@ data class Expense(
          * @return New expense with current timestamps
          */
         fun create(
+            id: Long = 0,
             amount: BigDecimal,
             date: LocalDate,
             category: Category,
@@ -89,7 +91,7 @@ data class Expense(
         ): Expense {
             val now = Instant.fromEpochMilliseconds(System.currentTimeMillis())
             return Expense(
-                id = 0,
+                id = id,
                 amount = amount,
                 date = date,
                 category = category,
@@ -114,7 +116,7 @@ data class Expense(
             note: String? = null,
         ): Expense {
             val amount = BigDecimal(amountInCents).divide(BigDecimal(BIG_DECIMAL_100))
-            return create(amount, date, category, note)
+            return create(amount = amount, date = date, category = category, note = note)
         }
     }
 }
