@@ -7,6 +7,7 @@ import com.germandebustamante.domain.usecase.GetLastUsedCategoryUseCase
 import com.germandebustamante.domain.usecase.UpdateExpenseUseCase
 import com.germandebustamante.domain.usecase.ValidateExpenseUseCase
 import com.germandebustamante.domain.usecase.GetExpenseByIdUseCase
+import com.germandebustamante.domain.usecase.DeleteExpenseUseCase
 import org.koin.dsl.module
 
 val domainModule = module {
@@ -17,4 +18,5 @@ val domainModule = module {
     factory { GetLastUsedCategoryUseCase(get()) }
     factory { ValidateExpenseUseCase() }
     factory { GetExpenseByIdUseCase(get()) }
+    factory { DeleteExpenseUseCase(get()) }
 }

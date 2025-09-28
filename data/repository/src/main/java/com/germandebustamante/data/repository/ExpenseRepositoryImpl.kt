@@ -8,6 +8,9 @@ import com.germandebustamante.model.Expense
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import kotlinx.datetime.LocalDate
+import kotlinx.datetime.plus
+import kotlinx.datetime.minus
+import kotlinx.datetime.DatePeriod
 import java.math.BigDecimal
 
 /**
@@ -125,22 +128,13 @@ class ExpenseRepositoryImpl(
         }
 
         val startOfMonth = LocalDate(year, month, FIRST_DAY_OF_MONTH)
-        val endOfMonth = LocalDate(year, month, startOfMonth.month.length(isLeapYear(year)))
+        val endOfMonth = startOfMonth.plus(DatePeriod(months = 1)).minus(DatePeriod(days = 1))
 
         return Pair(
             startOfMonth.toEpochDays().toLong(),
             endOfMonth.toEpochDays().toLong()
         )
     }
-
-    /**
-     * Check if a year is a leap year.
-     *
-     * @param year Year to check
-     * @return true if the year is a leap year
-     */
-    private fun isLeapYear(year: Int): Boolean =
-        year % LEAP_YEAR_DIVISOR_4 == 0 && (year % LEAP_YEAR_DIVISOR_100 != 0 || year % LEAP_YEAR_DIVISOR_400 == 0)
 
     companion object {
         private val CENTS_TO_EUROS_DIVISOR = BigDecimal(100)
@@ -151,8 +145,5 @@ class ExpenseRepositoryImpl(
         private const val MIN_MONTH_VALUE = 1
         private const val MAX_MONTH_VALUE = 12
         private const val FIRST_DAY_OF_MONTH = 1
-        private const val LEAP_YEAR_DIVISOR_4 = 4
-        private const val LEAP_YEAR_DIVISOR_100 = 100
-        private const val LEAP_YEAR_DIVISOR_400 = 400
     }
 }

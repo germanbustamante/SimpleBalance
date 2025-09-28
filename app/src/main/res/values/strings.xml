@@ -28,4 +28,6 @@
     <string name="validation_error_note_length">Note cannot exceed %1$d characters, got: %2$d</string>
     <string name="validation_error_note_special_characters">Note cannot contain special characters: &lt; &gt; { } [ ]</string>
     <string name="expense_not_found_error">Expense not found</string>
+    <string name="expense_deleted_message">Expense deleted</string>
+    <string name="undo_action">Undo</string>
 </resources>

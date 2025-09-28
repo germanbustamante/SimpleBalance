@@ -9,7 +9,7 @@ This roadmap breaks down the SaldoSimple development into logical phases, ensuri
 
 ---
 
-## Phase 1: Foundation & Core Data Layer (Week 1-2)
+## Phase 1: Foundation & Core Data Layer (Week 1-2) ✅
 
 ### Goals
 - Establish project structure and architecture
@@ -76,7 +76,7 @@ This roadmap breaks down the SaldoSimple development into logical phases, ensuri
 
 ---
 
-## Phase 2: Modularization & Dependency Injection (Week 2)
+## Phase 2: Modularization & Dependency Injection (Week 2) ✅
 
 ### Goals
 - Modularize the codebase into `data` and `domain` layers for better separation of concerns.
@@ -128,7 +128,7 @@ This roadmap breaks down the SaldoSimple development into logical phases, ensuri
 
 ---
 
-## Phase 3: Basic UI Foundation (Week 2-3)
+## Phase 3: Basic UI Foundation (Week 2-3) ✅
 
 ### Goals
 - Set up Compose navigation
@@ -181,7 +181,7 @@ This roadmap breaks down the SaldoSimple development into logical phases, ensuri
 
 ---
 
-## Phase 4: Add/Edit Expense Flow (Week 3-4)
+## Phase 4: Add/Edit Expense Flow (Week 3-4) ✅
 
 ### Goals
 - Implement add expense functionality
@@ -233,7 +233,7 @@ This roadmap breaks down the SaldoSimple development into logical phases, ensuri
 
 ---
 
-## Phase 5: Delete & List Interactions (Week 4-5)
+## Phase 5: Delete & List Interactions (Week 4-5) ✅
 
 ### Goals
 - Implement swipe-to-delete functionality
